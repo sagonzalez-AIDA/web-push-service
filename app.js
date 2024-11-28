@@ -8,15 +8,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const publicVapidKey =
-  "BEzj8tUfMx0zIfsx9l2PzdO_-5AaLh05sNetBMOrszhFtMbMRb26a2_XAMSaLoEht12lwKULYGuyV5ti4INEYfA";
-const privateVapidKey = "8VmIssQOtvcxBGLemUfrI7_xp6vNeKeFkHDVa5-QRIU";
+const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
+const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
+const email = process.env.EMAIL_VAPID;
 
-webpush.setVapidDetails(
-  "mailto:tuemail@example.com",
-  publicVapidKey,
-  privateVapidKey
-);
+webpush.setVapidDetails(email, publicVapidKey, privateVapidKey);
 
 app.use(express.static(path.join(__dirname, "client")));
 
