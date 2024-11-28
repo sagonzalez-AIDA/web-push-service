@@ -26,6 +26,12 @@ app.post("/subscribe", (req, res) => {
   res.status(201).json({});
 });
 
+app.post('/unsubscribe', (req, res) => {
+  const subscription = req.body;
+  subscriptions = subscriptions.filter(sub => sub.endpoint !== subscription.endpoint);
+  res.status(200).json({ message: 'Desuscripción exitosa.' });
+});
+
 app.post("/trigger-notification", (req, res) => {
   const message = req.body.message || "Nueva notificación desde el servidor!";
 
