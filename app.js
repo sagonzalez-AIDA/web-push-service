@@ -32,6 +32,11 @@ app.post('/unsubscribe', (req, res) => {
   res.status(200).json({ message: 'Desuscripción exitosa.' });
 });
 
+app.post('/unsubscribe-all', (req, res) => {
+  subscriptions = [];
+  res.status(200).json({ message: 'Se han eliminado todas las suscripciones.' });
+});
+
 app.post("/trigger-notification", (req, res) => {
   const message = req.body.message || "Nueva notificación desde el servidor!";
 
