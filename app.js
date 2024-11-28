@@ -21,6 +21,11 @@ let subscriptions = [];
 app.post("/subscribe", (req, res) => {
   const subscription = req.body;
 
+  const existingSubscription = subscriptions.find(sub => sub.endpoint === subscription.endpoint);
+  if(existingSubscription) {
+      return res.status(200).json({ message: 'Ya se encuentra suscrito.' });
+  }
+
   subscriptions.push(subscription);
 
   res.status(201).json({});
